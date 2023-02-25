@@ -54,7 +54,7 @@ const internSchool = {
 // Email address
 // Office number
 
-console.log("Welcome to your Team Profile generator!");
+console.log("Welcome to Your Team Profile Generator!");
 
 const getEmployeeInfo = (response) => {
   const questionsToAsk = [...commonQs];
@@ -101,12 +101,16 @@ const whatNext = () => {
     })
     .then((response) => {
       if (response.next === "Finish Team") {
-        console.log("goodbye");
-        console.log(teamMembers)
+        console.log("Thankyou for using Your Team Profile Generator! \n Your Team Pofile is now being generated...");
+        writeHTML();
         process.exit();
       } else getEmployeeInfo(response.next);
     });
 };
 
 whatNext();
+
+function writeHTML() {
+  fs.writeFileSync(outputPath, render(teamMembers),"utf-8")
+};
 
